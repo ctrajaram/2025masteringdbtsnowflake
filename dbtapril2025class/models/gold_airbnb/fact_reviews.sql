@@ -2,4 +2,4 @@
 {{config(materialized='table')}}
 
 
-select * from {{ref('stg_reviews')}}
+select * from {{ref('dbtapril2025class','stg_reviews')}}

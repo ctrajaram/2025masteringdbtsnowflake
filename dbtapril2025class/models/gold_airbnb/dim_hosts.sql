@@ -7,4 +7,4 @@ SELECT
     created_at,
     updated_at
 FROM
-    {{ ref('stg_hosts') }}
+    {{ ref('dbtapril2025class','stg_hosts') }}
