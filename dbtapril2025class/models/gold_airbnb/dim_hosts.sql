@@ -1,4 +1,4 @@
-{{config(materialized = 'table')}}
+{{config(materialized = 'ephemeral')}}
 
 SELECT
     host_id,
