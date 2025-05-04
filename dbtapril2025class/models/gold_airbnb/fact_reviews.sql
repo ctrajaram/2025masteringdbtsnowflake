@@ -2,7 +2,8 @@
     config(
         materialized='incremental',
         unique_key=['listing_id', 'reviewer_name', 'review_date'],
-        incremental_strategy=var('strategy', 'merge')
+        incremental_strategy=var('strategy', 'merge'),
+        incremental_predicates=["DBT_INTERNAL_DEST.review_date > DATE('2019-01-01')"] 
     )
 }}
 
@@ -12,8 +13,7 @@ WITH source_data AS (
     FROM {{ref('stg_reviews')}}
     {% if is_incremental() %}
     -- This filter is applied during incremental runs
-    -- Only process records from the last 2 years (the predicate window)
-    WHERE review_date > DATE('2019-01-01')
+    WHERE review_date > DATE('2018-01-01') -- Changed date as requested
     {% endif %}
 ),
 
